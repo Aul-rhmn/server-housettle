@@ -64,6 +64,6 @@ app.use(function(err, req, res, next) {
   app.use("/", (req, res) => {
     res.send()
   });
-  app.listen(3000, console.log("Server started on PORT 3000"))
+  app.listen(5000, console.log("Server started on PORT 5000"))
 
 module.exports = app;
