@@ -62,7 +62,7 @@ app.use(function(err, req, res, next) {
 
   //server
   app.use("/", (req, res) => {
-    res.send()
+    res.send("server is running")
   });
   app.listen(5000, console.log("Server started on PORT 5000"))
 
