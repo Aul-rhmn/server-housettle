@@ -60,4 +60,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+  //server
+  app.use("/", (req, res) => {
+    res.send()
+  });
+  app.listen(3000, console.log("Server started on PORT 3000"))
+
 module.exports = app;
