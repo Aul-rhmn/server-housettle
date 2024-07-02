@@ -6,6 +6,7 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const MongoDBStore = require('connect-mongodb-session')(session);
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://aulrhmn:housetting@codefeast.1wrxbli.mongodb.net/db_housettle?retryWrites=true&w=majority&appName=codefeast', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -19,6 +20,17 @@ var app = express();
 const adminRouter = require('./routes/admin');
 const apiRouter = require('./routes/api')
 
+// Initialize MongoDBStore
+const store = new MongoDBStore({
+  uri: process.env.MONGODB_URI,
+  collection: 'sessions'
+});
+
+// Catch errors
+store.on('error', function(error) {
+  console.error('MongoDB Store Error:', error);
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -27,6 +39,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || "keyboard cat",
   resave: false,
   saveUninitialized: true,
+  store: store,
   cookie: { maxAge: 3600000 }
 }));
 app.use(flash());
