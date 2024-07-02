@@ -27,10 +27,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { 
-    cookie: true,
-    maxAge: 3600000
-   }
+  cookie: { maxAge: 3600000 }
 }));
 app.use(flash());
 app.use(logger('dev'));
