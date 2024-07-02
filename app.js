@@ -6,6 +6,7 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const isLogin = require('./middlewares/isLogin');
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://aulrhmn:housetting@codefeast.1wrxbli.mongodb.net/db_housettle?retryWrites=true&w=majority&appName=codefeast', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -43,6 +44,10 @@ app.use('/users', usersRouter);
 // admin
 app.use('/admin', adminRouter);
 app.use('/api/v1/member', apiRouter);
+
+app.get('/profile', isLogin, (req, res) => {
+  res.render('profile', { user: req.session.user });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
