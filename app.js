@@ -6,7 +6,7 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
-const isLogin = require('./middlewares/isLogin');
+const isLogin = require('./middlewares/auth');
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://aulrhmn:housetting@codefeast.1wrxbli.mongodb.net/db_housettle?retryWrites=true&w=majority&appName=codefeast', {useNewUrlParser: true, useUnifiedTopology: true});
