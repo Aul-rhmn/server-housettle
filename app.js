@@ -73,6 +73,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// cors
+const cors = require('cors');
+app.use(cors())
+
   //server
   app.use("/", (req, res) => {
     res.send("server is running")
