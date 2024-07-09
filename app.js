@@ -6,17 +6,18 @@ var logger = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
+const cors = require('cors');
 const MongoDBStore = require('connect-mongodb-session')(session);
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://aulrhmn:housetting@codefeast.1wrxbli.mongodb.net/db_housettle?retryWrites=true&w=majority&appName=codefeast', {useNewUrlParser: true, useUnifiedTopology: true});
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-const cors = require('cors');
 
 //  router admin
 const adminRouter = require('./routes/admin');
