@@ -16,6 +16,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const cors = require('cors');
+
 //  router admin
 const adminRouter = require('./routes/admin');
 const apiRouter = require('./routes/api')
@@ -35,6 +37,9 @@ store.on('error', function(error) {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
+app.use(cors({
+  origin: "*"
+}));
 app.use(session({
   secret: process.env.SESSION_SECRET || "keyboard cat",
   resave: false,
@@ -73,12 +78,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// cors
-const cors = require('cors');
-app.use(cors())
-app.use(cors({
-  origin: "*"
-}));
 
   //server
   app.use("/", (req, res) => {
