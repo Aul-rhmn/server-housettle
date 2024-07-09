@@ -76,6 +76,9 @@ app.use(function(err, req, res, next) {
 // cors
 const cors = require('cors');
 app.use(cors())
+app.use(cors({
+  origin: "*"
+}))
 
   //server
   app.use("/", (req, res) => {
